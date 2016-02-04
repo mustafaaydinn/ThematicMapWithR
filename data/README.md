@@ -1,0 +1,1 @@
+Gerekli bazi veri dosyalari
