@@ -23,6 +23,8 @@ kasim2015$donem <- "2015-11"
 turkey_pop_data <- merge(pop_data, city_fips_codes, 'Name')
 turkey_data_201506 <- merge(turkey_pop_data, haziran2015, by.x='Name', by.y="il")
 turkey_data <- merge(turkey_data_201506, kasim2015, by.x='Name', by.y="il", suffixes = c("_06","_11"))
+
+
 ## Harita dosyasini alalim.
 
 f <- tempfile()
@@ -46,7 +48,7 @@ MyWorldMapTurDATA <- append_data(MyWorldMapTur, turkey_data, key.shp = "fips", k
 
 ## Artik verilerimizi harita uzerinde kolayca gosterebiliriz.
 qtm(MyWorldMapTurDATA, fill = "Populationinlatestcensus_2000", text="Name", text.size="AREA", root=5, legend.show = FALSE, format="Europe")
-
+str(MyWorldMapTurDATA)
 #bos turkiye haritasi
 tm_shape(MyWorldMapTurDATA) + 
   tm_fill("Red") + 
@@ -98,8 +100,8 @@ doMap = function(pno) {
             style="fixed", 
             breaks=c(-Inf, 1, 5, 10, 25, 30, 40, 50, 60, 70, Inf)) +
     tm_borders() +
-    tm_text("Name", size="AREA", root=5) +
-    tm_layout(scale=.8, 
+    tm_text("Name", size="AREA", root=3) +
+    tm_layout(scale=.9, 
               #aes.palette = list(seq = "Green"),
               legend.show = TRUE, 
               inner.margins = c(0, 0.2, 0.025, 0.01),
@@ -109,7 +111,7 @@ doMap = function(pno) {
               legend.text.size = 0.6,
               bg.color="lightblue",
               legend.format = list(text.less.than = " az ",
-                                   text.or.more = " dan fazla ",
+                                   text.or.more = " den fazla ",
                                    text.separator = " - ")) +
     tm_credits("Hakan SARIBIYIK", position = c("right", "BOTTOM"))
   
