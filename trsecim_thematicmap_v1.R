@@ -6,6 +6,7 @@
 
 library(readxl)    # for reading Excel
 library(tmap)
+library(tmaptools)
 
 ## Veriyi yukleyelim.
 city_fips_codes <- read_excel("./data/turkey_codes.xlsx", sheet = "turkey_city_fips_codes")
@@ -51,7 +52,7 @@ qtm(MyWorldMapTurDATA, fill = "Populationinlatestcensus_2000", text="Name", text
 str(MyWorldMapTurDATA)
 #bos turkiye haritasi
 tm_shape(MyWorldMapTurDATA) + 
-  tm_fill("Red") + 
+  tm_fill("red") + 
   tm_borders(alpha=.5)
 
 ## Haziran 2015
@@ -100,7 +101,7 @@ doMap = function(pno) {
             style="fixed", 
             breaks=c(-Inf, 1, 5, 10, 25, 30, 40, 50, 60, 70, Inf)) +
     tm_borders() +
-    tm_text("Name", size="AREA", root=3) +
+    tm_text(c("Name", "Name"), size="AREA", root=3) +
     tm_layout(scale=.9, 
               #aes.palette = list(seq = "Green"),
               legend.show = TRUE, 
@@ -131,7 +132,7 @@ tm_shape(MyWorldMapTurDATA) +
           style="fixed", 
           breaks=c(-Inf, 1, 5, 10, 25, 30, 40, 50, 60, 70, Inf)) +
   tm_borders() +
-  tm_text("Name", size="AREA", root=5) +
+  tm_text(c("Name", "Name", "Name", "Name") , size="AREA", root=5) +
   tm_layout(scale=.9, 
             legend.show = TRUE, 
             inner.margins = c(0, 0.2, 0.025, 0.01),
