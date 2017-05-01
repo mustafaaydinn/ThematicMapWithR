@@ -45,7 +45,7 @@ MyWorldMapTur <- MyWorldMap[(MyWorldMap$sov_a3 %in% c("TUR")),]
 # Veri ile harita bilgilerini birlestirelim.
 
 MyWorldMapTurDATA <- append_data(MyWorldMapTur, turkey_data, key.shp = "fips", key.data = "FIPS", ignore.na = TRUE)
-
+factor(MyWorldMapTur$fips, exclude = NULL)
 
 ## Artik verilerimizi harita uzerinde kolayca gosterebiliriz.
 qtm(MyWorldMapTurDATA, fill = "Populationinlatestcensus_2000", text="Name", text.size="AREA", root=5, legend.show = FALSE, format="Europe")
@@ -101,14 +101,12 @@ doMap = function(pno) {
             style="fixed", 
             breaks=c(-Inf, 1, 5, 10, 25, 30, 40, 50, 60, 70, Inf)) +
     tm_borders() +
-    tm_text(c("Name", "Name"), size="AREA", root=3) +
+    tm_text(c("Name", "Name"), size="AREA", root=3, legend.size.show = FALSE) +
     tm_layout(scale=.9, 
               #aes.palette = list(seq = "Green"),
               legend.show = TRUE, 
               inner.margins = c(0, 0.2, 0.025, 0.01),
               legend.position = c("left", "bottom"),
-              #legend.frame = "black",
-              #legend.width = 0.15,
               legend.text.size = 0.6,
               bg.color="lightblue",
               legend.format = list(text.less.than = " az ",
@@ -132,7 +130,7 @@ tm_shape(MyWorldMapTurDATA) +
           style="fixed", 
           breaks=c(-Inf, 1, 5, 10, 25, 30, 40, 50, 60, 70, Inf)) +
   tm_borders() +
-  tm_text(c("Name", "Name", "Name", "Name") , size="AREA", root=5) +
+  tm_text(c("Name", "Name", "Name", "Name") , size="AREA", root=5, legend.size.show = FALSE) +
   tm_layout(scale=.9, 
             legend.show = TRUE, 
             inner.margins = c(0, 0.2, 0.025, 0.01),
